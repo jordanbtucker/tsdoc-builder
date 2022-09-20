@@ -1,0 +1,51 @@
+{
+  "name": "tsdoc-builder",
+  "version": "0.0.0",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "./lib"
+  ],
+  "engines": {
+    "node": "^14 || ^16 || >=18",
+    "npm": ">=7"
+  },
+  "scripts": {
+    "build": "run-s clean tsc:clean tsc:build",
+    "changelog": "git add CHANGELOG.md",
+    "clean": "rimraf lib/*",
+    "coverage": "run-s -c build tap tap:coverage",
+    "eslint": "eslint --fix .",
+    "lint": "run-s eslint prettier",
+    "prepare": "husky install",
+    "prettier": "prettier --loglevel warn -w .",
+    "preversion": "run-s test changelog",
+    "snapshot": "tap --snapshot --ts test",
+    "tap": "tap -R spec --ts test",
+    "tap:coverage": "tap --coverage-report html",
+    "test": "run-s build tap",
+    "tsc:build": "tsc --build",
+    "tsc:clean": "tsc --build --clean"
+  },
+  "dependencies": {
+    "@microsoft/tsdoc": "^0.14.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@tsconfig/node14": "^1.0.3",
+    "@types/node": "^18.7.18",
+    "@types/tap": "^15.0.7",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "tap": "^16.3.0",
+    "ts-node": "^10.9.1"
+  }
+}
