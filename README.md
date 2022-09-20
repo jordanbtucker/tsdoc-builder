@@ -1,3 +1,3 @@
-# node-init
+# tsdoc-builder
 
-Starting point for Node.js projects
+A library for generating [TSDoc](https://tsdoc.org/) comments.
